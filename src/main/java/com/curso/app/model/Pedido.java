@@ -5,26 +5,23 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-// Aula 3/4: lado "muitos" do relacionamento 1:N com Cliente.
+// Aula 3: lado "muitos" do relacionamento 1:N com Cliente.
 // @ManyToOne + @JoinColumn sao o que de fato cria a coluna de chave estrangeira (cliente_id) no banco.
 @Entity
-@Table(name = "pedidos")
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private LocalDate data;
 
-    @Column(nullable = false)
     private BigDecimal valor;
 
     // @JsonIgnore evita um segundo problema (alem do toString): sem ele, o Jackson
     // serializaria cliente -> pedidos -> cliente -> pedidos ... em loop infinito ao gerar o JSON.
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cliente_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     @JsonIgnore
     private Cliente cliente;
 
@@ -69,9 +66,23 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    // Nao incluimos "cliente" aqui de proposito: evita o loop infinito com Cliente.toString().
     @Override
     public String toString() {
         return "Pedido{id=" + id + ", data=" + data + ", valor=" + valor + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pedido)) return false;
+        Pedido pedido = (Pedido) o;
+        return java.util.Objects.equals(id, pedido.id)
+                && java.util.Objects.equals(data, pedido.data)
+                && java.util.Objects.equals(valor, pedido.valor);                
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(id, data, valor);
     }
 }
