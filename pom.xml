@@ -15,7 +15,7 @@
 	<artifactId>mvc-aula2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mvc-aula2</name>
-	<description>Projeto de exemplo - Aula 2 - Arquitetura MVC, Maven e Spring Boot</description>
+	<description>Projeto de exemplo - Aulas 2 a 5 - Arquitetura MVC, JPA/Hibernate, H2 e Lombok</description>
 
 	<properties>
 		<java.version>17</java.version>
@@ -34,11 +34,11 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- Banco de dados em memoria, sem instalacao -->
+		<!-- Banco de dados H2. Aula 5: scope volta a ser o padrao (compile) porque
+		     MvcAula2Application usa org.h2.tools.Server diretamente no codigo da aplicacao -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Reinicio automatico da aplicacao a cada alteracao no codigo -->
@@ -46,6 +46,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Aula 5 (Bloco 3): gera getters/setters/toString/equals/hashCode/construtores
+		     em tempo de compilacao. optional=true -> so atua na compilacao, nao entra no artefato final -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 

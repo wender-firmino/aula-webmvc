@@ -29,4 +29,9 @@ public class PedidoService {
         pedido.setCliente(cliente);
         return pedidoRepository.save(pedido);
     }
+
+    // Aula 5 (2.4): expoe a consulta HQL com JOIN do PedidoRepository para o Controller.
+    public List<Pedido> buscarPedidosDoCliente(String nomeCliente) {
+        return pedidoRepository.buscarPedidosDoCliente(nomeCliente);
+    }
 }

@@ -29,4 +29,11 @@ public class ClienteController {
     public Cliente cadastrar(@RequestBody Cliente cliente) {
         return clienteService.cadastrar(cliente);
     }
+
+    // Aula 5 (2.4): GET http://localhost:8080/clientes/buscar?trecho=Silva
+    // Usa a consulta HQL @Query("SELECT c FROM Cliente c WHERE c.nome LIKE %:trecho%").
+    @GetMapping("/buscar")
+    public List<Cliente> buscarPorTrechoDoNome(@RequestParam String trecho) {
+        return clienteService.buscarPorTrechoDoNome(trecho);
+    }
 }

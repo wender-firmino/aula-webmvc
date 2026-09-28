@@ -24,4 +24,9 @@ public class ClienteService {
     public Cliente cadastrar(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
+
+    // Aula 5 (2.4): expoe a consulta HQL do ClienteRepository para o Controller.
+    public List<Cliente> buscarPorTrechoDoNome(String trecho) {
+        return clienteRepository.buscarPorTrechoDoNome(trecho);
+    }
 }
