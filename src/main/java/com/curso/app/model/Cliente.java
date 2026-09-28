@@ -70,9 +70,10 @@ public class Cliente {
         return pedidos;
     }
 
+    // Nao incluimos "pedidos" aqui de proposito: evita o loop infinito
+    // Cliente.toString() -> Pedido.toString() -> Cliente.toString() -> ...
     @Override
     public String toString() {
-        return "Cliente{id=" + id + ", nome='" + nome + "', email='" + email + "', pedidos=" + pedidos + "}";
+        return "Cliente{id=" + id + ", nome='" + nome + "', email='" + email + "'}";
     }
-
 }
