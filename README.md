@@ -1,4 +1,4 @@
-# mvc-aula2 — projeto de exemplo (Aulas 2, 3 e 4)
+# mvc-aula2 — projeto de exemplo (Aulas 2 e 3 · ponto de partida da Aula 4)
 
 Projeto Maven + Spring Boot que evolui ao longo das aulas da Unidade 1 e 2.
 Este é o **mesmo projeto** desde a Aula 2 — cada aula estende o código
@@ -12,9 +12,10 @@ anterior em vez de criar um projeto novo.
   `@GeneratedValue`), nova entidade `Pedido` com relacionamento **1:N**
   (`@OneToMany` / `@ManyToOne` + `@JoinColumn`), `ClienteRepository` vira
   uma interface `JpaRepository` de verdade.
-- **Aula 4 (31/08)** — anotações JPA aprofundadas: `@Table`/`@Column`,
-  `cascade`/`orphanRemoval`, `FetchType` (LAZY x EAGER), e cuidado com
-  `toString()` em relacionamentos bidirecionais.
+- **Aula 4 (31/08)** — laboratório guiado (ver `Tutorial-Laboratorio-JPA-31-08-2026.docx`):
+  anotações JPA aprofundadas (`@Table`/`@Column`), `cascade`/`orphanRemoval`
+  e a correção de `toString()`/`equals()`/`hashCode()` em relacionamentos
+  bidirecionais — a fazer durante o laboratório.
 
 ## Estrutura de pacotes (por camada)
 

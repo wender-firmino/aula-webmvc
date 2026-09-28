@@ -7,23 +7,18 @@ import java.util.List;
 // Aula 3: o POJO da Aula 2 virou uma entidade JPA de verdade.
 // @Entity + @Id + @GeneratedValue sao o minimo para o Hibernate mapear esta classe para uma tabela.
 @Entity
-@Table(name = "clientes")
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome_completo", length = 120, nullable = false)
     private String nome;
 
-    @Column(nullable = false, unique = true)
     private String email;
 
     // mappedBy indica que quem "e dono" da relacao (guarda a chave estrangeira) e o Pedido.
-    // cascade = PERSIST: salvar um Cliente com Pedidos novos ja salva os Pedidos junto.
-    // orphanRemoval = true: remover um Pedido da lista tambem apaga ele do banco.
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente() {
@@ -70,10 +65,8 @@ public class Cliente {
         return pedidos;
     }
 
-    // Nao incluimos "pedidos" aqui de proposito: evita o loop infinito
-    // Cliente.toString() -> Pedido.toString() -> Cliente.toString() -> ...
     @Override
     public String toString() {
-        return "Cliente{id=" + id + ", nome='" + nome + "', email='" + email + "'}";
+        return "Cliente{id=" + id + ", nome='" + nome + "', email='" + email + "', pedidos=" + pedidos + "}";
     }
 }
