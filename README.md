@@ -1,4 +1,4 @@
-# mvc-aula2 — projeto de exemplo (Aulas 2, 3 e 4)
+# mvc-aula2 — projeto de exemplo (Aulas 2, 3 e 4 · ponto de partida da Aula 5)
 
 Projeto Maven + Spring Boot que evolui ao longo das aulas da Unidade 1 e 2.
 Este é o **mesmo projeto** desde a Aula 2 — cada aula estende o código
