@@ -1,10 +1,13 @@
-# mvc-aula2 — projeto de exemplo (Aula 5 · gabarito 14/09/2026)
+# mvc-aula2 — projeto de exemplo (Aula 6 · ponto de partida 21/09/2026)
 
 Projeto Maven + Spring Boot que evolui ao longo das aulas da Unidade 1 e 2.
 Este é o **mesmo projeto** desde a Aula 2 — cada aula estende o código
-anterior em vez de criar um projeto novo. Este pacote é o **gabarito** da
-Aula 5: parta de `mvc-aula5-fonte-14-09-2026` para acompanhar o passo a
-passo em sala; use esta pasta para conferir o resultado esperado.
+anterior em vez de criar um projeto novo.
+
+Esta branch é o **ponto de partida da Aula 6 (21/09)**. O código é
+idêntico ao gabarito da Aula 5 (`aula5-resposta`): a aula de 21/09 cobriu
+só teoria e o teste do Controller já existente (GET no navegador, POST via
+curl) — não houve código novo para versionar.
 
 ## Linha do tempo do projeto
 
@@ -99,8 +102,17 @@ mvn package    # empacota a aplicação (gera o .jar em target/)
 mvn spring-boot:run   # roda a aplicação sem precisar da IDE
 ```
 
-## Próxima aula (S6 · 21/09)
+## Aula 6 (S6 · 21/09)
 
 Unidade 3 — Camada de Controle com Spring Web aprofundada: `@RestController`,
 mapeamento de rotas e o caminho completo da requisição até o repositório.
-Simulado 1 (Unidades 1 e 2) abre junto com a S6, na semana de 21 a 26/09.
+Testar o `ClienteController` já existente: GET `/clientes` no navegador,
+POST via curl, e o desafio de criar `GET /clientes/{id}` com 404.
+Simulado 1 (Unidades 1 e 2) na semana de 21 a 26/09 — a aula teve só os 50
+minutos iniciais de conteúdo, o restante foi liberado para o simulado.
+
+## Próxima aula (S7 · 28/09)
+
+Retomada do Lombok em Controller/Service (pendente de 14/09) + Unidade 3:
+camada de Serviço (`@Service`, `@Transactional`) e Spring Security
+(autenticação com BCrypt, autorização por papel).
