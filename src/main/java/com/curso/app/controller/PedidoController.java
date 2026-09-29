@@ -2,19 +2,18 @@ package com.curso.app.controller;
 
 import com.curso.app.model.Pedido;
 import com.curso.app.service.PedidoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// Aula 7 (slide 6): @RequiredArgsConstructor no lugar do construtor manual.
 @RestController
 @RequestMapping("/clientes/{clienteId}/pedidos")
+@RequiredArgsConstructor
 public class PedidoController {
 
     private final PedidoService pedidoService;
-
-    public PedidoController(PedidoService pedidoService) {
-        this.pedidoService = pedidoService;
-    }
 
     // GET http://localhost:8080/clientes/1/pedidos  (lista todos os pedidos cadastrados)
     @GetMapping

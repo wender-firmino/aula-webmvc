@@ -11,6 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -42,11 +44,26 @@ class ClienteServiceTest {
     void cadastrarDeveDelegarParaORepository() {
         Cliente novo = new Cliente(null, "Carlos Mendes", "carlos.mendes@exemplo.com");
         Cliente salvo = new Cliente(3L, "Carlos Mendes", "carlos.mendes@exemplo.com");
+        when(clienteRepository.existsByEmail(novo.getEmail())).thenReturn(false);
         when(clienteRepository.save(novo)).thenReturn(salvo);
 
         Cliente resultado = clienteService.cadastrar(novo);
 
         assertThat(resultado).isEqualTo(salvo);
         verify(clienteRepository).save(novo);
+    }
+
+    // Aula 7 (slide 17): regra de negocio - e-mail duplicado e recusado antes
+    // de chamar o Repository.
+    @Test
+    void cadastrarDeveRecusarEmailJaCadastrado() {
+        Cliente novo = new Cliente(null, "Carlos Mendes", "carlos.mendes@exemplo.com");
+        when(clienteRepository.existsByEmail(novo.getEmail())).thenReturn(true);
+
+        assertThatThrownBy(() -> clienteService.cadastrar(novo))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("E-mail ja cadastrado");
+
+        verify(clienteRepository, never()).save(novo);
     }
 }

@@ -18,4 +18,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     // O % antes e depois faz a busca funcionar como um "contem" (equivalente ao LIKE do SQL).
     @Query("SELECT c FROM Cliente c WHERE c.nome LIKE %:trecho%")
     List<Cliente> buscarPorTrechoDoNome(@Param("trecho") String trecho);
+
+    // Aula 7 (slide 17): Query Method - o Spring Data monta a consulta a
+    // partir do nome do metodo (existsBy + Email), sem precisar de @Query aqui.
+    boolean existsByEmail(String email);
 }
