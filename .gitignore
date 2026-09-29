@@ -5,6 +5,7 @@ target/
 .settings/
 .classpath
 .project
+.vscode/
 
 # Aula 5 (2.3): arquivos do H2 em modo servidor - dados de teste nao pertencem ao repositorio
 data/*.mv.db
