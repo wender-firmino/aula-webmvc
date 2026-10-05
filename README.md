@@ -43,6 +43,46 @@ com.curso.app
 └── MvcAula2Application.java — sobe o servidor TCP do H2 antes do Spring Boot
 ```
 
+## Dados de exemplo: o DataSeeder (leia antes de rodar)
+
+Ao subir a aplicação, a classe `DataSeeder` (`src/main/java/com/curso/app/DataSeeder.java`)
+cadastra **sozinha** alguns dados de teste. Você não precisa digitar nada.
+
+| Tabela | O que é criado |
+|---|---|
+| `CLIENTES` | Ana Souza, Bruno Lima, Joaquim Silva, Carla Silveira (e-mails `nome.sobrenome@exemplo.com`) |
+| `PEDIDOS` | 5 pedidos ligados a Ana, Bruno e Joaquim |
+
+Como ele funciona, em 3 pontos:
+
+1. **Só semeia se o banco estiver vazio** (`clienteRepository.count() > 0` → não faz nada).
+   Por isso, ao reiniciar a aplicação, a lista **não dobra**.
+2. Os dados ficam no arquivo `data/mvcdb.mv.db` (banco H2 em modo servidor).
+   Esse arquivo **não vai para o GitHub**: cada aluno gera o próprio na primeira execução.
+3. Na **primeira** execução você verá no log os comandos `insert into clientes ...`.
+   Nas seguintes, não aparece nenhum `insert`: é o esperado.
+
+### Como conferir que os dados existem
+
+- Abra `http://localhost:8080/paginas/clientes` (login `user` / `1234`): devem aparecer 4 clientes.
+- Ou abra `http://localhost:8080/h2-console`, conecte com URL
+  `jdbc:h2:tcp://localhost:9092/./data/mvcdb`, usuário `sa`, senha em branco, e rode
+  `SELECT * FROM CLIENTES`.
+
+### A lista apareceu vazia. E agora?
+
+Isso acontece se você excluiu todos os clientes (o banco guarda o que você fez).
+Para voltar ao estado inicial:
+
+1. **Pare** a aplicação (botão Stop da IDE ou `Ctrl+C` no terminal). Com ela rodando,
+   o Windows não deixa apagar o arquivo.
+2. Na pasta do projeto, apague os arquivos `data/mvcdb.mv.db` e, se existir, `data/mvcdb.trace.db`.
+   **Não apague** a pasta `data/` nem o arquivo `.gitkeep` dentro dela.
+3. Rode a aplicação de novo: o banco está vazio, então o `DataSeeder` semeia outra vez.
+
+> Se aparecer "port may be in use" ou "Database may be already in use", ainda há uma
+> execução anterior aberta. Encerre-a primeiro.
+
 ## Como rodar
 
 1. Abra a pasta na IDE — ela reconhece o `pom.xml` automaticamente.
