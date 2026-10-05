@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Clientes</title></head>
+<body>
+  <div th:replace="~{fragmentos :: cabecalho}"></div>
+
+  <h2>Clientes</h2>
+
+  <p th:if="${clientes.isEmpty()}">Nenhum cliente cadastrado ainda.</p>
+
+  <table border="1" cellpadding="6" th:unless="${clientes.isEmpty()}">
+    <tr>
+      <th>Nome</th><th>E-mail</th><th>Ações</th>
+    </tr>
+    <tr th:each="c : ${clientes}">
+      <td th:text="${c.nome}"></td>
+      <td th:text="${c.email}"></td>
+      <td>
+        <a th:href="@{/paginas/clientes/editar/{id}(id=${c.id})}">Editar</a>
+        <form th:action="@{/paginas/clientes/excluir/{id}(id=${c.id})}"
+              method="post" style="display:inline">
+          <button type="submit">Excluir</button>
+        </form>
+      </td>
+    </tr>
+  </table>
+
+  <p><a th:href="@{/paginas/clientes/novo}">Novo cliente</a></p>
+</body>
+</html>

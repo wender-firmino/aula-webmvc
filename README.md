@@ -1,13 +1,12 @@
-# mvc-aula2 — projeto de exemplo (Aula 8 · ponto de partida 05/10/2026)
+# mvc-aula2 — projeto de exemplo (Aula 8 · gabarito 05/10/2026)
 
 Projeto Maven + Spring Boot que evolui ao longo das aulas da Unidade 1 e 2.
 Este é o **mesmo projeto** desde a Aula 2 — cada aula estende o código
 anterior em vez de criar um projeto novo.
 
-Esta branch é o **ponto de partida da Aula 8 (05/10)**. O código é
-idêntico ao gabarito da Aula 7 (`aula7-resposta`): Lombok em Controller/
-Service, regra de e-mail duplicado, Spring Security e `DELETE /clientes/{id}`.
-A resposta de hoje vai para `aula8-resposta`.
+Esta branch é o **gabarito da Aula 8 (05/10)**: o ponto de partida (`aula8`)
+mais a camada de visão com Thymeleaf. Páginas em `/boas-vindas` e
+`/paginas/clientes` (login do navegador: `user` / `1234`).
 
 ## Linha do tempo do projeto
 
@@ -133,4 +132,5 @@ fragmentos. Passos do laboratório:
 5. Editar (`existsByEmailAndIdNot` + `atualizar`) e excluir (POST).
 6. `templates/fragmentos.html` com `th:fragment`/`th:replace`.
 
-A resposta desta aula vai para a branch `aula8-resposta`.
+Esta branch contém o resultado de todos os passos. Os testes
+(`mvn test`) cobrem as páginas (`ClientePaginaControllerTest`).

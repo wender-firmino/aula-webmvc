@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+  <!-- Aula 8 (4.2): escrito uma vez, incluido em varias paginas com th:replace -->
+  <header th:fragment="cabecalho">
+    <h1>mvc-aula2</h1>
+    <nav>
+      <a th:href="@{/boas-vindas}">Início</a> |
+      <a th:href="@{/paginas/clientes}">Clientes</a> |
+      <a th:href="@{/paginas/clientes/novo}">Novo cliente</a>
+    </nav>
+    <hr/>
+  </header>
+</body>
+</html>

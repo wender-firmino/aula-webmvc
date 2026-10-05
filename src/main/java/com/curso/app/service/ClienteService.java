@@ -41,4 +41,21 @@ public class ClienteService {
     public void excluir(Long id) {
         clienteRepository.deleteById(id);
     }
+
+    // Aula 8 (slide 49): buscar por id tambem passa pelo Service.
+    public Cliente buscarPorId(Long id) {
+        return clienteRepository.findById(id).orElseThrow();
+    }
+
+    // Aula 8 (slide 53): a checagem de e-mail ignora o proprio cliente (AndIdNot).
+    // dados.setId(id) garante que o save() vira UPDATE, nao INSERT.
+    public Cliente atualizar(Long id, Cliente dados) {
+        boolean emailDeOutroCliente =
+                clienteRepository.existsByEmailAndIdNot(dados.getEmail(), id);
+        if (emailDeOutroCliente) {
+            throw new IllegalArgumentException("E-mail ja cadastrado");
+        }
+        dados.setId(id);
+        return clienteRepository.save(dados);
+    }
 }

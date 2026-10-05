@@ -22,4 +22,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     // Aula 7 (slide 17): Query Method - o Spring Data monta a consulta a
     // partir do nome do metodo (existsBy + Email), sem precisar de @Query aqui.
     boolean existsByEmail(String email);
+
+    // Aula 8 (slide 52): "existe esse e-mail em OUTRO cliente?" - usado na
+    // edicao, para o cliente poder manter o proprio e-mail.
+    boolean existsByEmailAndIdNot(String email, Long id);
 }
