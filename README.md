@@ -1,13 +1,13 @@
-# mvc-aula2 — projeto de exemplo (Aula 7 · ponto de partida 28/09/2026)
+# mvc-aula2 — projeto de exemplo (Aula 8 · ponto de partida 05/10/2026)
 
 Projeto Maven + Spring Boot que evolui ao longo das aulas da Unidade 1 e 2.
 Este é o **mesmo projeto** desde a Aula 2 — cada aula estende o código
 anterior em vez de criar um projeto novo.
 
-Esta branch é o **ponto de partida da Aula 7 (28/09)**. O código é
-idêntico ao gabarito da Aula 5 (`aula5-resposta`): a Aula 6 (21/09) não
-gerou código novo (só teoria e teste do Controller já existente). A
-resposta de hoje vai para `aula7-resposta`.
+Esta branch é o **ponto de partida da Aula 8 (05/10)**. O código é
+idêntico ao gabarito da Aula 7 (`aula7-resposta`): Lombok em Controller/
+Service, regra de e-mail duplicado, Spring Security e `DELETE /clientes/{id}`.
+A resposta de hoje vai para `aula8-resposta`.
 
 ## Linha do tempo do projeto
 
@@ -112,9 +112,25 @@ Simulado 1 (Unidades 1 e 2) na semana de 21 a 26/09 — a aula teve só os 50
 minutos iniciais de conteúdo, o restante foi liberado para o simulado; não
 houve código novo.
 
-## Aula 7 (S7 · 28/09, hoje)
+## Aula 7 (S7 · 28/09)
 
 Retomada do Lombok em Controller/Service (pendente de 14/09) + Unidade 3:
 camada de Serviço (`@Service`, `@Transactional`) e Spring Security
 (autenticação com BCrypt, autorização por papel). A resposta desta aula
 vai para a branch `aula7-resposta`.
+
+## Aula 8 (S8 · 05/10, hoje)
+
+Unidade 4 — Camada de Visão com **Thymeleaf**: `@Controller` que devolve o
+nome de um template, `Model` + `th:each` para listar, formulário com
+`th:object`/`th:field`, Post/Redirect/Get, editar, excluir (POST) e
+fragmentos. Passos do laboratório:
+
+1. Adicionar `spring-boot-starter-thymeleaf` ao `pom.xml`.
+2. `PaginaController` + `templates/boas-vindas.html`.
+3. `ClientePaginaController` + `templates/clientes/lista.html`.
+4. `templates/clientes/formulario.html` + cadastro com PRG.
+5. Editar (`existsByEmailAndIdNot` + `atualizar`) e excluir (POST).
+6. `templates/fragmentos.html` com `th:fragment`/`th:replace`.
+
+A resposta desta aula vai para a branch `aula8-resposta`.
