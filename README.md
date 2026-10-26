@@ -1,12 +1,13 @@
-# mvc-aula2 — projeto de exemplo (Aula 8 · gabarito 05/10/2026)
+# mvc-aula2 — projeto de exemplo (Aula 10 · ponto de partida 26/10/2026)
 
 Projeto Maven + Spring Boot que evolui ao longo das aulas da Unidade 1 e 2.
 Este é o **mesmo projeto** desde a Aula 2 — cada aula estende o código
 anterior em vez de criar um projeto novo.
 
-Esta branch é o **gabarito da Aula 8 (05/10)**: o ponto de partida (`aula8`)
-mais a camada de visão com Thymeleaf. Páginas em `/boas-vindas` e
-`/paginas/clientes` (login do navegador: `user` / `1234`).
+Esta branch é o **ponto de partida da Aula 10 (26/10)**: o CRUD de clientes
+com Thymeleaf da Aula 8, **ainda sem estilo**. No laboratório você aplica o
+Bootstrap 5.3.8 (o gabarito está na branch `aula10-resposta`). Páginas em
+`/boas-vindas` e `/paginas/clientes` (login do navegador: `user` / `1234`).
 
 ## Linha do tempo do projeto
 
@@ -29,6 +30,10 @@ mais a camada de visão com Thymeleaf. Páginas em `/boas-vindas` e
     construtores manuais por `@Data + @NoArgsConstructor + @AllArgsConstructor`,
     com `@ToString.Exclude` / `@EqualsAndHashCode.Exclude` na associação
     (evita o loop infinito entre as duas entidades).
+- **Aula 7 (28/09)** — Lombok em Controller/Service, camada de serviço e Spring Security.
+- **Aula 8 (05/10)** — camada de visão com Thymeleaf (páginas, CRUD de clientes, fragmento).
+- **Aula 9 (19/10)** — revisão do CRUD Thymeleaf; sem código novo.
+- **Aula 10 (26/10)** — laboratório: Bootstrap 5.3.8 no CRUD (seção no fim deste arquivo).
 
 ## Estrutura de pacotes (por camada)
 
@@ -41,7 +46,7 @@ com.curso.app
 ├── DataSeeder.java — popula registros de exemplo só se o banco estiver vazio
 └── MvcAula2Application.java — sobe o servidor TCP do H2 antes do Spring Boot
 
-src/main/resources/templates/   (Aula 8 — páginas Thymeleaf; só na `aula8-resposta`)
+src/main/resources/templates/   (Aula 8 — páginas Thymeleaf, ainda sem Bootstrap)
 ├── boas-vindas.html            primeira página (th:text)
 ├── fragmentos.html             cabeçalho reutilizável (th:fragment)
 └── clientes/
@@ -165,7 +170,7 @@ camada de Serviço (`@Service`, `@Transactional`) e Spring Security
 (autenticação com BCrypt, autorização por papel). A resposta desta aula
 vai para a branch `aula7-resposta`.
 
-## Aula 8 (S8 · 05/10, hoje)
+## Aula 8 (S8 · 05/10)
 
 Unidade 4 — Camada de Visão com **Thymeleaf**: `@Controller` que devolve o
 nome de um template, `Model` + `th:each` para listar, formulário com
@@ -181,3 +186,19 @@ fragmentos. Passos do laboratório:
 
 Esta branch contém o resultado de todos os passos. Os testes
 (`mvn test`) cobrem as páginas (`ClientePaginaControllerTest`).
+
+## Aula 10 (S10 · 26/10) — laboratório
+
+Unidade 4 (4.3) — aplicar o **Bootstrap 5.3.8** às páginas Thymeleaf deste projeto.
+Siga o tutorial de laboratório da aula. Passos:
+
+1. `fragmentos.html`: criar o fragmento `head(titulo)` (CSS e JS do CDN) e o `navbar`.
+2. `lista.html`: `container`, tabela `table-striped`/`table-hover`, botões e `alert` de sucesso.
+3. `formulario.html`: `card`, `form-control` e validação visual com `is-invalid`/`invalid-feedback`.
+4. `ClientePaginaController`: `RedirectAttributes.addFlashAttribute("sucesso", ...)` antes do redirect.
+5. Ocultar a coluna de e-mail em tela estreita (`d-none d-md-table-cell`) e testar no DevTools.
+
+Sem internet: use o WebJar `org.webjars:bootstrap:5.3.8` no `pom.xml` e
+`@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}` (e o `.js` equivalente) no fragmento `head`.
+
+Travou? Compare com a branch `aula10-resposta`.
