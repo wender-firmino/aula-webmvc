@@ -1,30 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Clientes</title></head>
+<head th:replace="~{fragmentos :: head('Clientes')}"></head>
 <body>
-  <div th:replace="~{fragmentos :: cabecalho}"></div>
+<nav th:replace="~{fragmentos :: navbar}"></nav>
 
-  <h2>Clientes</h2>
+<main class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3">Clientes</h1>
+    <a class="btn btn-primary" th:href="@{/paginas/clientes/novo}">Novo cliente</a>
+  </div>
 
-  <p th:if="${clientes.isEmpty()}">Nenhum cliente cadastrado ainda.</p>
+  <!-- Mensagem de sucesso: chega por flash attribute e aparece uma unica vez -->
+  <div th:if="${sucesso != null}"
+       class="alert alert-success alert-dismissible fade show" role="alert">
+    <span th:text="${sucesso}">Mensagem</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"
+            aria-label="Fechar"></button>
+  </div>
 
-  <table border="1" cellpadding="6" th:unless="${clientes.isEmpty()}">
-    <tr>
-      <th>Nome</th><th>E-mail</th><th>Ações</th>
-    </tr>
-    <tr th:each="c : ${clientes}">
-      <td th:text="${c.nome}"></td>
-      <td th:text="${c.email}"></td>
-      <td>
-        <a th:href="@{/paginas/clientes/editar/{id}(id=${c.id})}">Editar</a>
-        <form th:action="@{/paginas/clientes/excluir/{id}(id=${c.id})}"
-              method="post" style="display:inline">
-          <button type="submit">Excluir</button>
-        </form>
-      </td>
-    </tr>
-  </table>
+  <div th:if="${#lists.isEmpty(clientes)}" class="alert alert-info">
+    Nenhum cliente cadastrado.
+  </div>
 
-  <p><a th:href="@{/paginas/clientes/novo}">Novo cliente</a></p>
+  <div class="table-responsive" th:unless="${#lists.isEmpty(clientes)}">
+    <table class="table table-striped table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th class="d-none d-md-table-cell">E-mail</th>
+          <th class="text-end">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="c : ${clientes}">
+          <td th:text="${c.nome}">Nome</td>
+          <td class="d-none d-md-table-cell" th:text="${c.email}">email</td>
+          <td class="text-end">
+            <a class="btn btn-sm btn-outline-primary"
+               th:href="@{|/paginas/clientes/editar/${c.id}|}">Editar</a>
+            <form class="d-inline" method="post"
+                  th:action="@{|/paginas/clientes/excluir/${c.id}|}"
+                  onsubmit="return confirm('Excluir este cliente?')">
+              <button type="submit" class="btn btn-sm btn-outline-danger">
+                Excluir</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
 </body>
 </html>

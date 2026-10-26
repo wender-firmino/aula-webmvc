@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 // Aula 8 (4.2): Controller de PAGINAS (HTML) para Cliente. Convive com o
 // ClienteController (API/JSON) no mesmo projeto, em outra rota.
@@ -43,14 +44,18 @@ public class ClientePaginaController {
     // Sucesso: redirect (Post/Redirect/Get - F5 nao reenvia o POST).
     // Erro de regra (e-mail duplicado): NAO redireciona; devolve o formulario
     // com a mensagem "erro" no Model e os dados digitados preservados.
+    // Aula 10 (4.3): no sucesso, o flash attribute "sucesso" alimenta o alert
+    // do Bootstrap na lista e vale so para o proximo pedido (F5 nao repete).
     @PostMapping
-    public String salvar(@ModelAttribute Cliente cliente, Model model) {
+    public String salvar(@ModelAttribute Cliente cliente, Model model,
+                         RedirectAttributes ra) {
         try {
             if (cliente.getId() == null) {
                 clienteService.cadastrar(cliente);
             } else {
                 clienteService.atualizar(cliente.getId(), cliente);
             }
+            ra.addFlashAttribute("sucesso", "Cliente salvo com sucesso.");
             return "redirect:/paginas/clientes";
         } catch (IllegalArgumentException e) {
             model.addAttribute("erro", e.getMessage());
@@ -61,8 +66,9 @@ public class ClientePaginaController {
     // POST (nunca GET) para excluir: um GET pode ser disparado por crawler ou
     // pre-carregamento do navegador sem ninguem clicar.
     @PostMapping("/excluir/{id}")
-    public String excluir(@PathVariable Long id) {
+    public String excluir(@PathVariable Long id, RedirectAttributes ra) {
         clienteService.excluir(id);
+        ra.addFlashAttribute("sucesso", "Cliente excluído.");
         return "redirect:/paginas/clientes";
     }
 }

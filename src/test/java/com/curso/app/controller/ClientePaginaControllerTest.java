@@ -74,4 +74,24 @@ class ClientePaginaControllerTest {
                 .andExpect(redirectedUrl("/paginas/clientes"));
         verify(clienteService).excluir(3L);
     }
+
+    // Aula 10: o alert verde do Bootstrap depende deste flash attribute
+    @Test
+    void sucessoEnviaMensagemPorFlashAttribute() throws Exception {
+        mockMvc.perform(post("/paginas/clientes")
+                        .param("nome", "Carla").param("email", "carla@exemplo.com"))
+                .andExpect(flash().attribute("sucesso", "Cliente salvo com sucesso."));
+
+        mockMvc.perform(post("/paginas/clientes/excluir/3"))
+                .andExpect(flash().attribute("sucesso", "Cliente excluído."));
+    }
+
+    @Test
+    void listaCarregaBootstrapENavbar() throws Exception {
+        when(clienteService.listarTodos()).thenReturn(List.of());
+
+        mockMvc.perform(get("/paginas/clientes"))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("bootstrap@5.3.8")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("navbar")));
+    }
 }

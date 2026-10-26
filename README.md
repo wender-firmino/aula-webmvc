@@ -1,11 +1,13 @@
-# mvc-aula2 — projeto de exemplo (Aula 8 · gabarito 05/10/2026)
+# mvc-aula2 — projeto de exemplo (Aula 10 · gabarito 26/10/2026)
 
 Projeto Maven + Spring Boot que evolui ao longo das aulas da Unidade 1 e 2.
 Este é o **mesmo projeto** desde a Aula 2 — cada aula estende o código
 anterior em vez de criar um projeto novo.
 
-Esta branch é o **gabarito da Aula 8 (05/10)**: o ponto de partida (`aula8`)
-mais a camada de visão com Thymeleaf. Páginas em `/boas-vindas` e
+Esta branch é o **gabarito da Aula 10 (26/10)**: o ponto de partida (`aula10`)
+mais o **Bootstrap 5.3.8** aplicado às páginas Thymeleaf do CRUD de clientes
+(navbar em fragmento, tabela, botões, card, `is-invalid`, alert de sucesso por
+flash attribute, coluna oculta em tela estreita). Páginas da Aula 8 (05/10) mantidas. Páginas em `/boas-vindas` e
 `/paginas/clientes` (login do navegador: `user` / `1234`).
 
 ## Linha do tempo do projeto
@@ -30,6 +32,12 @@ mais a camada de visão com Thymeleaf. Páginas em `/boas-vindas` e
     com `@ToString.Exclude` / `@EqualsAndHashCode.Exclude` na associação
     (evita o loop infinito entre as duas entidades).
 
+- **Aula 10 (26/10)** — Bootstrap no CRUD de clientes: `fragmentos.html` passa a ter
+  `head(titulo)` (CDN) e `navbar`; `lista.html` e `formulario.html` reescritos;
+  `ClientePaginaController` envia `sucesso` via `RedirectAttributes`.
+  Sem internet: troque o CDN pelo WebJar `org.webjars:bootstrap:5.3.8` e use
+  `@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}` (e o `.js` equivalente).
+
 ## Estrutura de pacotes (por camada)
 
 ```
@@ -43,7 +51,7 @@ com.curso.app
 
 src/main/resources/templates/   (Aula 8 — páginas Thymeleaf; só na `aula8-resposta`)
 ├── boas-vindas.html            primeira página (th:text)
-├── fragmentos.html             cabeçalho reutilizável (th:fragment)
+├── fragmentos.html             head(titulo) com Bootstrap e navbar (th:fragment)
 └── clientes/
     ├── lista.html              tabela com th:each, Editar e Excluir
     └── formulario.html         cadastro e edição (th:object / th:field)
