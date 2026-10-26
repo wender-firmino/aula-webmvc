@@ -7,7 +7,7 @@ anterior em vez de criar um projeto novo.
 Esta branch é o **gabarito da Aula 10 (26/10)**: o ponto de partida (`aula10`)
 mais o **Bootstrap 5.3.8** aplicado às páginas Thymeleaf do CRUD de clientes
 (navbar em fragmento, tabela, botões, card, `is-invalid`, alert de sucesso por
-flash attribute, coluna oculta em tela estreita). Páginas da Aula 8 (05/10) mantidas. Páginas em `/boas-vindas` e
+flash attribute, coluna oculta em tela estreita). Páginas em `/boas-vindas` e
 `/paginas/clientes` (login do navegador: `user` / `1234`).
 
 ## Linha do tempo do projeto
@@ -31,12 +31,10 @@ flash attribute, coluna oculta em tela estreita). Páginas da Aula 8 (05/10) man
     construtores manuais por `@Data + @NoArgsConstructor + @AllArgsConstructor`,
     com `@ToString.Exclude` / `@EqualsAndHashCode.Exclude` na associação
     (evita o loop infinito entre as duas entidades).
-
-- **Aula 10 (26/10)** — Bootstrap no CRUD de clientes: `fragmentos.html` passa a ter
-  `head(titulo)` (CDN) e `navbar`; `lista.html` e `formulario.html` reescritos;
-  `ClientePaginaController` envia `sucesso` via `RedirectAttributes`.
-  Sem internet: troque o CDN pelo WebJar `org.webjars:bootstrap:5.3.8` e use
-  `@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}` (e o `.js` equivalente).
+- **Aula 7 (28/09)** — Lombok em Controller/Service, camada de serviço e Spring Security.
+- **Aula 8 (05/10)** — camada de visão com Thymeleaf (páginas, CRUD de clientes, fragmento).
+- **Aula 9 (19/10)** — revisão do CRUD Thymeleaf; sem código novo.
+- **Aula 10 (26/10)** — Bootstrap 5.3.8 no CRUD de clientes (ver seção própria abaixo).
 
 ## Estrutura de pacotes (por camada)
 
@@ -49,12 +47,12 @@ com.curso.app
 ├── DataSeeder.java — popula registros de exemplo só se o banco estiver vazio
 └── MvcAula2Application.java — sobe o servidor TCP do H2 antes do Spring Boot
 
-src/main/resources/templates/   (Aula 8 — páginas Thymeleaf; só na `aula8-resposta`)
+src/main/resources/templates/   (Aulas 8 e 10 — páginas Thymeleaf com Bootstrap)
 ├── boas-vindas.html            primeira página (th:text)
 ├── fragmentos.html             head(titulo) com Bootstrap e navbar (th:fragment)
 └── clientes/
-    ├── lista.html              tabela com th:each, Editar e Excluir
-    └── formulario.html         cadastro e edição (th:object / th:field)
+    ├── lista.html              tabela Bootstrap com th:each, Editar, Excluir e alert
+    └── formulario.html         card Bootstrap, cadastro e edição (th:object / th:field)
 ```
 
 ## Dados de exemplo: o DataSeeder (leia antes de rodar)
@@ -173,7 +171,7 @@ camada de Serviço (`@Service`, `@Transactional`) e Spring Security
 (autenticação com BCrypt, autorização por papel). A resposta desta aula
 vai para a branch `aula7-resposta`.
 
-## Aula 8 (S8 · 05/10, hoje)
+## Aula 8 (S8 · 05/10)
 
 Unidade 4 — Camada de Visão com **Thymeleaf**: `@Controller` que devolve o
 nome de um template, `Model` + `th:each` para listar, formulário com
@@ -189,3 +187,19 @@ fragmentos. Passos do laboratório:
 
 Esta branch contém o resultado de todos os passos. Os testes
 (`mvn test`) cobrem as páginas (`ClientePaginaControllerTest`).
+
+## Aula 10 (S10 · 26/10)
+
+Unidade 4 (4.3) — **Bootstrap 5.3.8** nas páginas Thymeleaf do CRUD de clientes.
+Passos do laboratório:
+
+1. `fragmentos.html`: fragmento `head(titulo)` (CSS e JS do CDN) e `navbar`.
+2. `lista.html`: `container`, tabela `table-striped`/`table-hover`, botões, `alert` de sucesso.
+3. `formulario.html`: `card`, `form-control` e validação visual com `is-invalid`/`invalid-feedback`.
+4. `ClientePaginaController`: `RedirectAttributes.addFlashAttribute("sucesso", ...)` antes do redirect.
+5. Coluna de e-mail oculta em tela estreita (`d-none d-md-table-cell`) e teste no modo dispositivo do DevTools.
+
+Sem internet: troque o CDN pelo WebJar `org.webjars:bootstrap:5.3.8` no `pom.xml` e use
+`@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}` (e o `.js` equivalente) no fragmento `head`.
+
+A branch `aula10` é o ponto de partida; esta (`aula10-resposta`) contém o resultado de todos os passos.
