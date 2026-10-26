@@ -1,11 +1,12 @@
-# mvc-aula2 — projeto de exemplo (Aula 8 · gabarito 05/10/2026)
+# mvc-aula2 — projeto de exemplo (Aula 9 · gabarito 19/10/2026)
 
 Projeto Maven + Spring Boot que evolui ao longo das aulas da Unidade 1 e 2.
 Este é o **mesmo projeto** desde a Aula 2 — cada aula estende o código
 anterior em vez de criar um projeto novo.
 
-Esta branch é o **gabarito da Aula 8 (05/10)**: o ponto de partida (`aula8`)
-mais a camada de visão com Thymeleaf. Páginas em `/boas-vindas` e
+Esta branch é o **gabarito da Aula 9 (19/10)**: o ponto de partida (`aula9`)
+mais formulário (Post/Redirect/Get), edição, exclusão e fragmento de cabeçalho.
+O código é o mesmo do gabarito de 05/10 (`aula8-resposta`). Páginas em `/boas-vindas` e
 `/paginas/clientes` (login do navegador: `user` / `1234`).
 
 ## Linha do tempo do projeto
