@@ -1,13 +1,14 @@
-# mvc-aula2 — projeto de exemplo (Aula 8 · ponto de partida 05/10/2026)
+# mvc-aula2 — projeto de exemplo (Aula 9 · ponto de partida 19/10/2026)
 
 Projeto Maven + Spring Boot que evolui ao longo das aulas da Unidade 1 e 2.
 Este é o **mesmo projeto** desde a Aula 2 — cada aula estende o código
 anterior em vez de criar um projeto novo.
 
-Esta branch é o **ponto de partida da Aula 8 (05/10)**. O código é
-idêntico ao gabarito da Aula 7 (`aula7-resposta`): Lombok em Controller/
-Service, regra de e-mail duplicado, Spring Security e `DELETE /clientes/{id}`.
-A resposta de hoje vai para `aula8-resposta`.
+Esta branch é o **ponto de partida da Aula 9 (19/10)**: o que ficou pronto em
+05/10 — Thymeleaf no `pom.xml`, `/boas-vindas` e a **lista** de clientes em
+`/paginas/clientes` (login do navegador: `user` / `1234`). Em aula entram o
+formulário (cadastro com Post/Redirect/Get), a edição, a exclusão e o fragmento
+de cabeçalho. A resposta vai para `aula9-resposta`.
 
 ## Linha do tempo do projeto
 

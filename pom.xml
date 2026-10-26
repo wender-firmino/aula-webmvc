@@ -28,6 +28,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- Aula 8 (4.1): motor de templates HTML (camada Visao) - procura em src/main/resources/templates/ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
 		<!-- Acesso a banco de dados via JPA/Hibernate (usaremos a partir da proxima aula) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

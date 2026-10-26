@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Clientes</title></head>
+<body>
+  <h2>Clientes</h2>
+
+  <p th:if="${clientes.isEmpty()}">Nenhum cliente cadastrado ainda.</p>
+
+  <table border="1" cellpadding="6" th:unless="${clientes.isEmpty()}">
+    <tr>
+      <th>Nome</th><th>E-mail</th>
+    </tr>
+    <tr th:each="c : ${clientes}">
+      <td th:text="${c.nome}"></td>
+      <td th:text="${c.email}"></td>
+    </tr>
+  </table>
+</body>
+</html>
